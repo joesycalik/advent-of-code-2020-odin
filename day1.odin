@@ -11,7 +11,8 @@ main :: proc() {
     fmt.println("Day 1 Answer: ", dayOne());
 }
 
-// Find 2 entries in a file that sum to 2020, then mutiply them together to get the answer
+// Part 1: Find 2 entries in a file that sum to 2020, then mutiply them together to get the answer
+// Part 2: Find 3 entries in the same file that sum to 2020 the return the product
 dayOne :: proc() -> (part1, part2 : int){
     byteData, err := os.read_entire_file("day1input.txt");
 
