@@ -7,7 +7,7 @@ import "core:unicode/utf8"
 
 main :: proc() {
     bytes, err := os.read_entire_file("day3input.txt");
-    lines := strings.split(cast()bytes, "\n");
+    lines := strings.split(cast(string)bytes, "\n");
 
     fmt.println("Part 1 Answer: ", part1(lines));
     fmt.println("Part 2 Answer: ", part2(lines));
