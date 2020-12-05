@@ -28,10 +28,24 @@ main :: proc() {
         minmax := strings.split(sections[0], "-");
         pass.letter_min = strconv.atoi(minmax[0]);
         pass.letter_max = strconv.atoi(minmax[1]);
-        pass.letter = utf8.string_to_runes(sections[1])[0];
+        pass.letter = cast(rune)sections[1][0];
+        val : string = cast(string)sections[1][0];
         pass.password = sections[2];
         append(&passes, pass);
     }
+
+    count_trees :: proc(dx, dy: int, grid: []string) -> (sum: int) {
+	x, y: int;
+	mod := len(grid[0]) - 1; // -1 since '\n' is part of string
+	for y < len(grid) {
+		if grid[y][x%mod] == '#' {
+			sum += 1;
+		}
+		x += dx;
+		y += dy;
+	}
+	return;
+}
 
     fmt.println("Part 1 Answer: ", part1(&passes));
     fmt.println("Part 2 Answer: ", part2(&passes));

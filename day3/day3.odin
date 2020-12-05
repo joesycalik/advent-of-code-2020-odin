@@ -36,9 +36,8 @@ checkSlope :: proc(lines : []string, right, down : int) -> (numTreesEncountered 
         downCounter -= 1;
         if downCounter != 0 do continue;
         downCounter = down;
-        runeLine := utf8.string_to_runes(line);
         linePos = (linePos + right) % 31;
-        if runeLine[linePos] == '#' do numTreesEncountered += 1;
+        if line[linePos] == '#' do numTreesEncountered += 1;
     }
     
     return numTreesEncountered;
