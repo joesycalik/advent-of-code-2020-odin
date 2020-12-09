@@ -92,28 +92,19 @@ part1__ :: proc(values : []int) -> int {
     for i in 25..<len(values) {
         next_int := values[i];
         num_valid := false;
-        //fmt.println(idx1, idx2, i);
         for a in idx1..<idx2 {
-            //fmt.println("A - ", a);
             if a in sums && container.array_len(sums[a]) > 0 {
-                //fmt.println("Exists");
-                //fmt.println(container.array_slice(sums[a]));
                 if a == idx2 - 1 do container.array_pop_front(&sums[a]);
                 container.array_push_back(&sums[a], values[a] + values[idx2]);
-                //fmt.println(container.array_slice(sums[a]));
                 for i in 0..<container.array_len(sums[a]) do if container.array_get(sums[a], i) == next_int do num_valid = true;
             } else {
-                //fmt.println("Not exists");
                 arr : container.Array(int);
                 container.array_init(&arr);
-                //fmt.println("init");
                 sums[a] = arr;
-                //fmt.println("Assigned");
                 for b in a + 1..idx2 {
                     if values[a] + values[b] == next_int do num_valid = true;
                     container.array_push_back(&sums[a], values[a] + values[b]);
                 }
-                //fmt.println(container.array_slice(sums[a]));
             }
         }
         if num_valid == false do return next_int;
@@ -139,26 +130,17 @@ part1___ :: proc(values : []int) -> int {
     for i in 25..<len(values) {
         next_int := values[i];
         num_valid := false;
-        //fmt.println(idx1, idx2, i);
         for a in idx1..<idx2 {
             idx := idx2 - a - 1;
-            //fmt.println("A - ", a);
             if sums[a][idx] != 0 {
-                //fmt.println("Exists");
-                //fmt.println(container.array_slice(sums[a]));
                 if a == idx2 - 1 do sums[a][idx1] = 0;
                 sums[a][idx2] = values[a] + values[idx];
-                //fmt.println(container.array_slice(sums[a]));
                 for i in sums[a] do if sums[a][i] == next_int do num_valid = true;
             } else {
-                //fmt.println("Not exists");
-                //fmt.println("init");
-                //fmt.println("Assigned");
                 for b in a + 1..idx2 {
                     if values[a] + values[b] == next_int do num_valid = true;
                     sums[a][idx] = values[a] + values[b];
                 }
-                //fmt.println(container.array_slice(sums[a]));
             }
         }
         if num_valid == false do return next_int;
