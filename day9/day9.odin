@@ -9,14 +9,14 @@ import "core:sys/windows"
 /* Profiling 
 Regular build (odin run .\day9.odin)
 ----------------------------------------
-Part 1 exec time: 3400.300 microseconds
-Part 2 exec time: 523.500 microseconds
+Part 1 exec time: 1698.700 microseconds
+Part 2 exec time: 485.900 microseconds
 ----------------------------------------
 
 Optimized build (odin build .\day9.odin -opt:3 -no-bounds-check -microarch=native)
 ----------------------------------------
-Part 1 exec time: 166.700 microseconds
-Part 2 exec time: 69.400 microseconds
+Part 1 exec time: 118.400 microseconds
+Part 2 exec time: 69.700 microseconds
 ----------------------------------------
 */
 main :: proc() {
@@ -54,7 +54,7 @@ main :: proc() {
     fmt.println("Part 2 answer=", part2_answer);
 }
 
-part1_ :: proc(values : []int) -> int {
+part1 :: proc(values : []int) -> int {
     idx1, idx2 := 0, 24;
     for i in 25..<len(values) {
         next_int := values[i];
