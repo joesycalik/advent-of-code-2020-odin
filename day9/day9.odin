@@ -54,15 +54,14 @@ main :: proc() {
     fmt.println("Part 2 answer=", part2_answer);
 }
 
-part1 :: proc(values : []int) -> int {
-    idx1 := 0;
-    idx2 := 24;
+part1_ :: proc(values : []int) -> int {
+    idx1, idx2 := 0, 24;
     for i in 25..<len(values) {
         next_int := values[i];
         num_valid := false;
         for a in idx1..idx2 {
-            for b in idx1..idx2 {
-                if a != b && values[a] + values[b] == next_int do num_valid = true;
+            for b in a + 1..idx2 {
+                if values[a] + values[b] == next_int do num_valid = true;
             }
         }
         if num_valid == false do return next_int;
@@ -89,11 +88,3 @@ part2 :: proc(values : []int, target_val : int) -> int{
 
     return -1;
 }
-
-/*
-(Question came to mind while solving part 1 as I thought about iterating through the data available)
-Would be interesting to compare performance of:
-- trickling value up in fixed array 
-- using Array pushback/popfront 
-- setting fixed array values to be equal to the next value with slice [1:] and setting the last index to the new value
-*/
